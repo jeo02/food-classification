@@ -47,6 +47,13 @@ p{
     margin-bottom: 20px;
 }
 
+@media (max-width:960px){
+    .card{
+        width: 100% !important;
+    }
+    
+}
+
 .uploadInput{
     display: none
 }
