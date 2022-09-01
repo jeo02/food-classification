@@ -188,7 +188,7 @@ function App() {
                     <p>Using the <b>Bootstrap framework</b> I then created a web application to make a user interface to interact with this model.</p>
                     
                     <Card style={{ width: '50rem'}}>
-                        <Card.Img variant="top" src=".public/food_examples.png" />
+                        <Card.Img variant="top" src="./food_examples.png" />
                         <Card.Body>
                             <Card.Title>Food Examples</Card.Title>
                             <Card.Text>
