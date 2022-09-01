@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "0c4243096555063587ed",
+    "revision": "d3d7057171a4a7717907",
     "url": "/food-classification/static/css/main.9294ddce.chunk.css"
   },
   {
-    "revision": "0c4243096555063587ed",
-    "url": "/food-classification/static/js/main.0c424309.chunk.js"
+    "revision": "d3d7057171a4a7717907",
+    "url": "/food-classification/static/js/main.d3d70571.chunk.js"
   },
   {
     "revision": "b9d8aaecb3beb8398829",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/food-classification/static/js/runtime~main.e6e041d0.js"
   },
   {
-    "revision": "05ada71b50e74cb7e61ef0499583bd8f",
+    "revision": "d2e8fd56d82b230d1b5f42bb0b3e8b9c",
     "url": "/food-classification/index.html"
   }
 ];
