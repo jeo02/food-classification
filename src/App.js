@@ -3,6 +3,7 @@ import * as tf from '@tensorflow/tfjs';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Card, Tabs, Tab, Button, ListGroup, Table} from 'react-bootstrap'
 
+//In the Future would've liked to put this in a JSON file
 const MODEL_CLASSES = ["apple_pie",
 "baby_back_ribs",
 "baklava",
@@ -106,6 +107,7 @@ const MODEL_CLASSES = ["apple_pie",
 "waffles"]
 
 function App() {
+  //Apps states
   const [isModelLoading, setIsModelLoading] = useState(false)
   const [model, setModel] = useState(null)
   const [imageURL, setImageURL] = useState(null);
@@ -114,7 +116,8 @@ function App() {
   
   const imageRef = useRef()
   const fileInputRef = useRef()
-
+  
+  //Method to load model
   const loadModel = async () => {
       setIsModelLoading(true)
       try {
@@ -127,7 +130,9 @@ function App() {
           setIsModelLoading(false)
       }
   }
-
+  
+  
+  //Uploading the image to be processed
   const uploadImage = (e) => {
       const { files } = e.target
       if (files.length > 0) {
@@ -138,18 +143,22 @@ function App() {
       }
   }
 
+  //method to predict the image submitted, called after clicking submit
   const identify = async () => {
         console.log("predicting:")
+    
+        //pre proccessing the image, attempted to do it as similarily to the way it was done in the model.
         const scaleFactor = tf.scalar(255);
         const imageTensor = tf.browser.fromPixels(imageRef.current);
         const resized_image = tf.image.resizeBilinear(imageTensor, [299,299]);
         const imageTensorFinal = resized_image.div(scaleFactor).expandDims(0);
-        const prediction = await model.predict(imageTensorFinal)
+        const prediction = await model.predict(imageTensorFinal);
         
-        console.log(prediction)
-
+        console.log(prediction);
+        
+        //Getting the top 5 predictions. 
         const topPreds = tf.topk(prediction, 5, true);
-
+        
         const topPredsVals = topPreds.values.dataSync();
         const topPredsIndices = topPreds.indices.dataSync();
         
@@ -157,7 +166,7 @@ function App() {
         for(let i = 0; i < topPredsIndices.length; i++){
             this_results.push({className: MODEL_CLASSES[topPredsIndices[i]], probability: topPredsVals[i], image: imageURL})
         }
-
+        
         setImageURL(null);
         setResults([this_results, ...results]);
   }
@@ -165,7 +174,8 @@ function App() {
   const triggerUpload = () => {
       fileInputRef.current.click()
   }
-
+  
+  // Load the model
   useEffect(() => {
       loadModel()
   }, [])
@@ -179,6 +189,7 @@ function App() {
   return (
     <div className='App'>
         <h1 id = "header">Food Identification</h1>
+        //Tabs for 3 sections, an about me, camera to submit the picture, and a results tab where all the results are displayed.
         <Tabs defaultActiveKey="first" fill>
             <Tab eventKey="first" title="Home">
                 <div className='center'>
